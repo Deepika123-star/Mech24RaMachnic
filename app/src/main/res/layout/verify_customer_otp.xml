@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/white_circle"
+            android:layout_centerHorizontal="true"/>
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/ic_perm_device_information_black_24dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/rect">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please Enter Otp for verification"
+                android:textSize="12dp"
+                android:textColor="@android:color/black"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mobile Number Verification"
+                android:textSize="16dp"
+                android:textColor="@android:color/black"
+                android:layout_marginBottom="15dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/til_mobile_fwp">
+
+                <EditText
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter OTP"
+                    android:textColor="@android:color/black"
+                    android:maxLength="4"
+                    android:textSize="12dp"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:id="@+id/ed_mobile_fwp"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="right"
+                android:layout_marginTop="30dp"
+                android:alpha="0.8">
+
+                <Button
+                    android:id="@+id/okButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:text="Ok"
+                    android:textSize="12dp"
+                    android:textColor="@android:color/white"
+                    android:enabled="false"
+                    android:background="@color/colorPrimaryDark" />
+
+                <Button
+                    android:id="@+id/cancelButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:text="Cancel"
+
+                    android:textColor="@android:color/white"
+                    android:background="@android:color/holo_red_dark"
+                 />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

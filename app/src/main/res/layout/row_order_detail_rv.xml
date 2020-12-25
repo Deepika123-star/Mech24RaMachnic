@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:theme="@style/Theme.MaterialComponents.Light"
+    app:cardElevation="@dimen/space_3"
+    app:cardUseCompatPadding="true"
+    card_view:cardCornerRadius="4dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="status"
+            android:textSize="@dimen/space_10"
+            android:visibility="gone"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/space_5"
+            android:textColor="@android:color/holo_red_dark"/>
+
+        <LinearLayout
+            android:layout_below="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_5"
+            android:layout_marginEnd="@dimen/space_5"
+            android:layout_marginBottom="@dimen/space_5"
+            android:weightSum="5"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@id/cancel"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Brand"
+                android:gravity="center"
+                android:textSize="@dimen/text_size_small"
+                android:textColor="@android:color/black"/>
+
+            <ImageView
+                android:id="@+id/productImage"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/Qty"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Qty"
+                android:textSize="@dimen/text_size_small"
+                android:textColor="@android:color/black"/>
+
+            <TextView
+                android:id="@+id/unit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Model"
+                android:textSize="@dimen/text_size_small"
+                android:textColor="@android:color/black"/>
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Price"
+                android:textSize="@dimen/text_size_small"
+                android:textColor="@android:color/black"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/cancel"
+            android:layout_width="@dimen/space_10"
+            android:layout_height="@dimen/space_10"
+            android:tint="@android:color/black"
+            android:background="@drawable/circle"
+            android:src="@drawable/ic_dialog_close_dark"
+            android:layout_alignParentEnd="true"
+            android:visibility="gone"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/space_10"
+            android:gravity="center"/>
+
+    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

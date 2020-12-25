@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <group>
+        <item
+            android:id="@+id/nav_order"
+            android:icon="@drawable/ic_nav_order"
+            android:title="Today Orders" />
+
+        <item
+            android:id="@+id/nav_Nextorder"
+            android:icon="@drawable/ic_nav_order"
+            android:visible="false"
+            android:title="Next Orders" />
+
+        <item
+            android:id="@+id/nav_order_history"
+            android:icon="@drawable/ic_nav_order"
+            android:title="Delivered History" />
+
+        <item
+            android:id="@+id/nav_log_out"
+            android:icon="@drawable/ic_nav_order"
+            android:title="Log Out" />
+
+    </group>
+</menu>

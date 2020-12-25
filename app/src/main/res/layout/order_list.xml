@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/space_10"
+    app:cardElevation="@dimen/space_10"
+    android:theme="@style/Theme.MaterialComponents.Light"
+    app:cardCornerRadius="@dimen/space_5"
+    android:layout_margin="@dimen/space_10">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/space_10"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_baseline_access_time_24"/>
+
+                <TextView
+                    android:id="@+id/datetime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_blue_outline"
+                    android:paddingTop="@dimen/space_5"
+                    android:paddingBottom="@dimen/space_5"
+                    android:paddingStart="@dimen/space_10"
+                    android:paddingEnd="@dimen/space_10"
+                    android:textStyle="bold"
+                    android:text="delivery date time here"
+                    android:layout_marginStart="@dimen/space_20"
+                    android:layout_marginEnd="@dimen/space_20"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="delivered"
+                    android:visibility="gone"
+                    android:textColor="@color/white"
+                    android:paddingTop="@dimen/space_5"
+                    android:paddingBottom="@dimen/space_5"
+                    android:background="@android:color/holo_green_dark"
+                    android:paddingStart="@dimen/space_10"
+                    android:paddingEnd="@dimen/space_10"
+                    android:layout_marginEnd="@dimen/space_20"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_2"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/space_18"
+                    android:layout_height="@dimen/space_18"
+                    android:src="@drawable/ic_baseline_assignment_24"/>
+
+                <TextView
+                    android:id="@+id/tv_order_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_20"
+                    android:paddingStart="@dimen/space_10"
+                    android:paddingTop="@dimen/space_2"
+                    android:paddingEnd="@dimen/space_2"
+                    android:textStyle="bold"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="@dimen/space_2"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_2"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/space_18"
+                    android:layout_height="@dimen/space_18"
+                    android:src="@drawable/ic_baseline_person_24"/>
+
+                <TextView
+                    android:id="@+id/tv_recivername"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/space_2"
+                    android:paddingBottom="@dimen/space_2"
+                    android:paddingStart="@dimen/space_10"
+                    android:paddingEnd="@dimen/space_10"
+                    android:layout_marginStart="@dimen/space_20"
+                    android:layout_marginEnd="@dimen/space_20"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_2"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/space_18"
+                    android:layout_height="@dimen/space_18"
+                    android:tint="@color/darkgray"
+                    android:src="@drawable/call"/>
+
+                <TextView
+                    android:id="@+id/contact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoLink="phone"
+                    android:paddingTop="@dimen/space_2"
+                    android:paddingBottom="@dimen/space_2"
+                    android:paddingStart="@dimen/space_10"
+                    android:paddingEnd="@dimen/space_10"
+                    android:layout_marginStart="@dimen/space_20"
+                    android:layout_marginEnd="@dimen/space_20"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_2"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/space_18"
+                    android:layout_height="@dimen/space_18"
+                    android:src="@drawable/ic_baseline_my_location_24"/>
+
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/space_2"
+                    android:paddingBottom="@dimen/space_2"
+                    android:paddingStart="@dimen/space_10"
+                    android:paddingEnd="@dimen/space_10"
+                    android:text="delivery address here"
+                    android:layout_marginStart="@dimen/space_20"
+                    android:layout_marginEnd="@dimen/space_20"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/space_5"
+            app:cardBackgroundColor="@color/colorPrimaryDark"
+            android:elevation="@dimen/space_5"
+            app:cardCornerRadius="@dimen/space_15">
+
+            <ImageView
+                android:layout_width="@dimen/space_20"
+                android:layout_height="@dimen/space_20"
+                android:src="@drawable/ic_look"
+                android:layout_gravity="center"
+                android:tint="@color/white"/>
+        </com.google.android.material.card.MaterialCardView>
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

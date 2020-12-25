@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contentPanel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg5"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.smartwebarts.mech24ra.MainActivity"
+    tools:showIn="@layout/app_bar_main">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/openMyProfile"
+                android:layout_width="match_parent"
+                android:onClick="profile"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    style="@style/dashboardImageView"
+                    android:layout_above="@id/textView"
+                    android:src="@drawable/ic_profile" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    style="@style/dashboardTextView"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="My Profile" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/openServiceRequest"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+
+                <ImageView
+                    style="@style/dashboardImageView"
+                    android:layout_above="@id/textView1"
+                    android:src="@drawable/ic_service_request" />
+
+                <TextView
+                    android:id="@+id/textView1"
+                    style="@style/dashboardTextView"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Service Request" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/openPaymentHistory"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="paymentHistory"
+                android:layout_weight="1">
+
+
+                <ImageView
+                    style="@style/dashboardImageView"
+                    android:layout_above="@id/textView2"
+                    android:src="@drawable/ic_payment_history" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    style="@style/dashboardTextView"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Payment History" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal">
+
+
+            <RelativeLayout
+                android:id="@+id/openWithrawlPayment"
+                android:layout_width="match_parent"
+                android:onClick="OrderHistory"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    style="@style/dashboardImageView"
+                    android:layout_above="@id/textView3"
+                    android:src="@drawable/ic_withdrawl_history" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    style="@style/dashboardTextView"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Completed Order" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/openGenerateInvoice"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+
+                <ImageView
+                    style="@style/dashboardImageView"
+                    android:layout_above="@id/textView4"
+                    android:src="@drawable/ic_invoice" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    style="@style/dashboardTextView"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Generate Invoice" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/openScheduledService"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="Todayorder"
+                android:layout_weight="1">
+
+
+                <ImageView
+                    style="@style/dashboardImageView"
+                    android:layout_above="@id/textView5"
+                    android:src="@drawable/ic_scheduled_service" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    style="@style/dashboardTextView"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Today Order" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/openServiceRequestHistory"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+
+                <ImageView
+                    style="@style/dashboardImageView"
+                    android:layout_above="@id/textView6"
+                    android:src="@drawable/ic_service_request_history" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    style="@style/dashboardTextView"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Pending Order" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/openService"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+
+                <ImageView
+                    style="@style/dashboardImageView"
+                    android:layout_above="@id/textView7"
+                    android:src="@drawable/ic_service_request_history" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    style="@style/dashboardTextView"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="Service Request History" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

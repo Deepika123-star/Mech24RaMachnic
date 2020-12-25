@@ -1,0 +1,159 @@
+{
+  "project_info": {
+    "project_number": "435139665896",
+    "firebase_url": "https://gobinto-6b146.firebaseio.com",
+    "project_id": "gobinto-6b146",
+    "storage_bucket": "gobinto-6b146.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435139665896:android:723748a532ff0a33e5ce5d",
+        "android_client_info": {
+          "package_name": "com.smartwebarts.deliveryboy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435139665896-imn86koeopbe5005au0qrss19jim1hs5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smartwebarts.deliveryboy",
+            "certificate_hash": "2fb35d79bbd13fec1a3ed33ffb13c09db9604440"
+          }
+        },
+        {
+          "client_id": "435139665896-gf6hu04r899hemjd08s2r9acbbr06fd6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhPgkt-h0X7QEswQRF2H_zJz9ZaOQ811w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435139665896-gf6hu04r899hemjd08s2r9acbbr06fd6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435139665896:android:db8c39cfd3070af8e5ce5d",
+        "android_client_info": {
+          "package_name": "smart.webarts.bewakoof"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435139665896-f4mma8aggm6dib46pjptnjv43gfqa0ml.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "smart.webarts.bewakoof",
+            "certificate_hash": "2fb35d79bbd13fec1a3ed33ffb13c09db9604440"
+          }
+        },
+        {
+          "client_id": "435139665896-gf6hu04r899hemjd08s2r9acbbr06fd6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhPgkt-h0X7QEswQRF2H_zJz9ZaOQ811w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435139665896-gf6hu04r899hemjd08s2r9acbbr06fd6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435139665896:android:314c7df2b0bbdc0ee5ce5d",
+        "android_client_info": {
+          "package_name": "smart.webarts.gobinto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435139665896-ad5ancj4i34c4u2revvr84p2tsqubrpm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "smart.webarts.gobinto",
+            "certificate_hash": "2fb35d79bbd13fec1a3ed33ffb13c09db9604440"
+          }
+        },
+        {
+          "client_id": "435139665896-gf6hu04r899hemjd08s2r9acbbr06fd6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhPgkt-h0X7QEswQRF2H_zJz9ZaOQ811w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435139665896-gf6hu04r899hemjd08s2r9acbbr06fd6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435139665896:android:a16da5b7c1a9c153e5ce5d",
+        "android_client_info": {
+          "package_name": "smart.webarts.gobintonew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435139665896-02t2sdvem9ata97h01g10s534sii0ann.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "smart.webarts.gobintonew",
+            "certificate_hash": "2fb35d79bbd13fec1a3ed33ffb13c09db9604440"
+          }
+        },
+        {
+          "client_id": "435139665896-gf6hu04r899hemjd08s2r9acbbr06fd6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhPgkt-h0X7QEswQRF2H_zJz9ZaOQ811w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435139665896-gf6hu04r899hemjd08s2r9acbbr06fd6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

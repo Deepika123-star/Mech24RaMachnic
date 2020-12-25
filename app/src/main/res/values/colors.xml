@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#EF801C</color>
+    <color name="colorPrimaryDark">#EF801C</color>
+    <color name="colorAccent">#85C4E0</color>
+    <color name="themeColor">@color/colorAccent</color>
+
+    <color name="white">#ffffff</color>
+    <color name="gray">#E3E3E3</color>
+    <color name="darkgray">#626262</color>
+    <color name="black">#000</color>
+    <color name="dark_black">#000000</color>
+    <color name="dark_gray">#FFBAB7B7</color>
+    <color name="color_1">#232f3e</color>
+    <color name="color_2">#1b4ddc</color>
+    <color name="color_3">#ff0023</color>
+    <color name="orange">#ffbb00</color>
+    <color name="yelow">#ffee05</color>
+    <color name="purple">#ed0bc0</color>
+
+    <color name="green">#A36F6F</color>
+    <color name="light_gray">#faf5f5</color>
+    <color name="contact_name">#333333</color>
+    <color name="contact_number">#8c8c8c</color>
+    <color name="skyblue">#4CAFA7</color>
+    <color name="abc">#19D60B</color>
+    <color name="green1">#68B936</color>
+
+</resources>
