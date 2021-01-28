@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ public class TodayOrder extends Fragment {
     SwipeRefreshLayout swipe;
     private MyOrderAdapter myPendingOrderAdapter;
     private SwitchCompat sw;
+    private RelativeLayout noData;
 
     public TodayOrder() {
         // Required empty public constructor
@@ -65,6 +67,7 @@ public class TodayOrder extends Fragment {
         rv_myorder = view.findViewById(R.id.rv_myorder);
         swipe = view.findViewById(R.id.swipe);
         sw = (SwitchCompat) view.findViewById(R.id.switch_but);
+        noData = (RelativeLayout) view.findViewById(R.id.noData);
 
         myPendingOrderAdapter = new MyOrderAdapter(getActivity(), my_order_modelList,true);
         rv_myorder.setAdapter(myPendingOrderAdapter);
@@ -152,7 +155,13 @@ public class TodayOrder extends Fragment {
                     Type listType = new TypeToken<ArrayList<My_order_model>>(){}.getType();
                     List<My_order_model> my_order_modelList = new Gson().fromJson(message, listType);
                     TodayOrder.this.my_order_modelList = my_order_modelList;
-                    myPendingOrderAdapter.setList(TodayOrder.this.my_order_modelList);
+
+                    if (TodayOrder.this.my_order_modelList!=null && TodayOrder.this.my_order_modelList.size()>0) {
+                        myPendingOrderAdapter.setList(TodayOrder.this.my_order_modelList);
+                        noData.setVisibility(View.GONE);
+                    } else {
+                        noData.setVisibility(View.VISIBLE);
+                    }
                     swipe.setRefreshing(false);
                 }
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dashboard_navigation.xml"
+    app:startDestination="@id/todayOrder">
+
+    <fragment
+        android:id="@+id/todayOrder"
+        tools:layout="@layout/frag_today"
+        android:name="com.smartwebarts.mech24ra.fragment.TodayOrder"
+        android:label="TodayOrder" />
+    <fragment
+        android:id="@+id/orderHistory"
+        tools:layout="@layout/fragment_order_history"
+        android:name="com.smartwebarts.mech24ra.fragment.Order_history"
+        android:label="NextOrder" />
+
+</navigation>

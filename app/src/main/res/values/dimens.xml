@@ -45,4 +45,16 @@
     <dimen name="_16sdp">16dp</dimen>
     <dimen name="_5sdp">5dp</dimen>
     <dimen name="_15sdp">15dp</dimen>
+    <dimen name="_40sdp">40dp</dimen>
+    <dimen name="_80sdp">80dp</dimen>
+    <dimen name="_14sdp">14dp</dimen>
+    <dimen name="_8sdp">8dp</dimen>
+    <dimen name="_13sdp">13sp</dimen>
+    <dimen name="button_padding">2dp</dimen>
+    <dimen name="button_margin">16dp</dimen>
+    <dimen name="button_gap">2dp</dimen>
+    <dimen name="txt_upr_margin">5dp</dimen>
+    <dimen name="_32sdp">32dp</dimen>
+    <dimen name="_7sdp">7sp</dimen>
+    <dimen name="_1sdp">1dp</dimen>
 </resources>

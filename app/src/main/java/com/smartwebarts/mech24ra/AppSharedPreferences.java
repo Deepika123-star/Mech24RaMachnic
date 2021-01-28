@@ -39,9 +39,15 @@ public class AppSharedPreferences {
         String temp = getLoginDetails(context);
         if (!temp.isEmpty())
         {
-            LoginResponse data = new Gson().fromJson(getLoginDetails(context), LoginResponse.class);
-            if (data != null){
-                return data.getProfile().getName();
+            try {
+                LoginResponse data = new Gson().fromJson(getLoginDetails(context), LoginResponse.class);
+                if (data != null && data.getProfile() !=null) {
+                    return data.getProfile().getName();
+                } else {
+                    return "";
+                }
+            } catch (Exception e) {
+                return "";
             }
         }
         return "";
@@ -53,9 +59,15 @@ public class AppSharedPreferences {
         String temp = getLoginDetails(context);
         if (!temp.isEmpty())
         {
-            LoginResponse data = new Gson().fromJson(getLoginDetails(context), LoginResponse.class);
-            if (data != null){
-                return data.getProfile().getId();
+            try {
+                LoginResponse data = new Gson().fromJson(getLoginDetails(context), LoginResponse.class);
+                if (data != null && data.getProfile()!=null){
+                    return data.getProfile().getId();
+                } else {
+                    return "";
+                }
+            } catch (Exception e) {
+                return "";
             }
         }
         return "";
@@ -65,8 +77,10 @@ public class AppSharedPreferences {
         if (!temp.isEmpty())
         {
             LoginResponse data = new Gson().fromJson(getLoginDetails(context), LoginResponse.class);
-            if (data != null){
+            if (data != null && data.getProfile()!=null){
                 return data.getProfile().getApiKey();
+            } else {
+                return "";
             }
         }
         return "";
@@ -81,4 +95,136 @@ public class AppSharedPreferences {
         context.startActivity(intent);
     }
 
+    public String getLoginUserVehicleImage(Context context){
+        String temp = getLoginDetails(context);
+        if (!temp.isEmpty())
+        {
+            LoginResponse data = new Gson().fromJson(getLoginDetails(context), LoginResponse.class);
+            if (data != null  && data.getProfile() !=null && data.getProfile().getShopimage()!=null){
+                return data.getProfile().getShopimage();
+            }
+        }
+        return "";
+    }
+
+    public String getLoginUserLicense(Context context){
+        String temp = getLoginDetails(context);
+        if (!temp.isEmpty())
+        {
+            LoginResponse data = new Gson().fromJson(getLoginDetails(context), LoginResponse.class);
+            if (data != null  && data.getProfile() !=null && data.getProfile().getDrivingLicense()!=null){
+                return data.getProfile().getDrivingLicense();
+            }
+        }
+        return "";
+    }
+
+    public String getLoginUserAdhaarImage(Context context){
+        String temp = getLoginDetails(context);
+        if (!temp.isEmpty())
+        {
+            LoginResponse data = new Gson().fromJson(getLoginDetails(context), LoginResponse.class);
+            if (data != null  && data.getProfile() !=null && data.getProfile().getAdhaarimage()!=null){
+                return data.getProfile().getAdhaarimage();
+            }
+        }
+        return "";
+    }
+
+    public String getLoginUserMechanicImage(Context context){
+        String temp = getLoginDetails(context);
+        if (!temp.isEmpty())
+        {
+            LoginResponse data = new Gson().fromJson(getLoginDetails(context), LoginResponse.class);
+            if (data != null  && data.getProfile() !=null && data.getProfile().getMechanicimage()!=null){
+                return data.getProfile().getMechanicimage();
+            }
+        }
+        return "";
+    }
+
+    public void setLoginUserStatus(Context context, String status){
+        String temp = getLoginDetails(context);
+        if (!temp.isEmpty())
+        {
+            LoginResponse data = new Gson().fromJson(getLoginDetails(context), LoginResponse.class);
+            if (data != null  && data.getProfile() !=null){
+                data.getProfile().setStatus(status);
+                setLoginDetails(context, new Gson().toJson(data));
+            }
+        }
+    }
+
+    public String getLoginUserAddress(Context context){
+        String temp = getLoginDetails(context);
+        if (!temp.isEmpty())
+        {
+            LoginResponse data = new Gson().fromJson(getLoginDetails(context), LoginResponse.class);
+            if (data != null  && data.getProfile() !=null && data.getProfile().getFullAddress()!=null){
+                return data.getProfile().getFullAddress();
+            }
+        }
+        return "";
+    }
+
+    public String getLoginVehicle(Context context){
+        String temp = getLoginDetails(context);
+        if (!temp.isEmpty())
+        {
+            LoginResponse data = new Gson().fromJson(getLoginDetails(context), LoginResponse.class);
+            if (data != null  && data.getProfile() !=null && data.getProfile().getVehicleType()!=null){
+                return data.getProfile().getVehicleType();
+            }
+        }
+        return "";
+    }
+
+
+    public String getLoginEmail(Context context){
+        String temp = getLoginDetails(context);
+        if (!temp.isEmpty())
+        {
+            LoginResponse data = new Gson().fromJson(getLoginDetails(context), LoginResponse.class);
+            if (data != null  && data.getProfile() !=null && data.getProfile().getEmail()!=null){
+                return data.getProfile().getEmail();
+            }
+        }
+        return "";
+    }
+
+    public String getLoginMobile(Context context){
+        String temp = getLoginDetails(context);
+        if (!temp.isEmpty())
+        {
+            LoginResponse data = new Gson().fromJson(getLoginDetails(context), LoginResponse.class);
+            if (data != null  && data.getProfile() !=null && data.getProfile().getContact()!=null){
+                return data.getProfile().getContact();
+            }
+        }
+        return "";
+    }
+
+    public String getLoginUserStatus(Context context){
+        String temp = getLoginDetails(context);
+        if (!temp.isEmpty())
+        {
+            LoginResponse data = new Gson().fromJson(getLoginDetails(context), LoginResponse.class);
+            if (data != null  && data.getProfile() !=null && data.getProfile().getStatus()!=null){
+                return data.getProfile().getStatus();
+            }
+        }
+        return "";
+    }
+
+    public String getLoginUserImage(Context context){
+        String temp = getLoginDetails(context);
+        if (!temp.isEmpty())
+        {
+            LoginResponse data = new Gson().fromJson(getLoginDetails(context), LoginResponse.class);
+            if (data != null  && data.getProfile() !=null && data.getProfile().getImage()!=null){
+                return data.getProfile().getImage();
+            }
+        }
+        return "";
+    }
 }

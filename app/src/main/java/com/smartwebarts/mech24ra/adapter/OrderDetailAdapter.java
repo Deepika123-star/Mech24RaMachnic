@@ -21,6 +21,8 @@ import java.util.List;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
+import static com.smartwebarts.mech24ra.retrofit.APIClient.BASE_URL;
+
 public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.MyViewHolder> {
 
     Context context;
@@ -43,9 +45,9 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
         OrderDetailModel detail = list.get(i);
         myViewHolder.price.setText(context.getString(R.string.currency)+" "+detail.getCost());
         myViewHolder.name.setText(detail.getBrand());
+
         Glide.with(context)
-                .load("http://autodoctor.co.in/img/vehicle_model/"+ detail.getImg())
-                .error(R.drawable.logo)
+                .load(BASE_URL + "img/vehicle_model/"+ detail.getImg())
                 .into(myViewHolder.productImage);
         myViewHolder.Qty.setText(detail.getQuantity());
         myViewHolder.unit.setText(detail.getModel());
@@ -94,7 +96,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
         notifyDataSetChanged();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView price, Qty, unit, name, status;
         ImageView productImage, cancel;

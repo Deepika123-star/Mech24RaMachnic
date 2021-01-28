@@ -15,13 +15,25 @@
 
     <string name="currency">\u20B9</string>
     <string name="no_rcord_found">No record found</string>
-    <string name="default_notification_channel_id">channel id</string>
+    <string name="default_notification_channel_id">channel</string>
 
 
     <string name="err_msg_mobile">Please Enter Your Mobile No.</string>
     <string name="err_msg_otp">Please Enter a Valid Otp</string>
     <string name="err_msg_mobile_length">Please Enter Your Mobile No.of 10 Digits.</string>
     <string name="err_msg_pass">Please Enter Your Password.</string>
+    <string name="pick_up">Pickup Location</string>
+    <string name="timeout">Timeout</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="accepted">Accepted</string>
+    <string name="delivered">Delivered</string>
+    <string name="user_info">User Info</string>
+    <string name="basic_details">Basic Details</string>
+    <string name="edit">Edit</string>
+    <string name="shop_name">Shop Name</string>
+    <string name="location_api_key_id">AIzaSyCfKKl5LsMfeU2M7-lqCf2qWoNC0rYpilg</string>
+    <string name="add_an_address">Add an address</string>
+    <string name="no_data_found">No data found</string>
 
 
 </resources>

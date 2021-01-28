@@ -53,7 +53,6 @@ public class ViewDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_details);
-
         toolbar = findViewById(R.id.toolbar);
         recyclerView = findViewById(R.id.recyclerView);
         order_id = findViewById(R.id.order_id);
@@ -68,20 +67,15 @@ public class ViewDetailsActivity extends AppCompatActivity {
         adapter = new OrderDetailAdapter(ViewDetailsActivity.this, list);
         recyclerView.setAdapter(adapter);
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
+        toolbar.setNavigationOnClickListener(view -> onBackPressed());
 
         my_order_model = (My_order_model) getIntent().getSerializableExtra("order");
         isToday = getIntent().getBooleanExtra("isToday", false);
 
         if (isToday) {
-            status.setText("Mark Delivered");
+            status.setText("Mark Done");
         } else {
-            status.setText("Delivered");
+            status.setText("Done");
             status.setEnabled(false);
             imageView.setEnabled(false);
             imageView.setVisibility(View.GONE);
@@ -93,22 +87,19 @@ public class ViewDetailsActivity extends AppCompatActivity {
         contact.setText(my_order_model.getContact());
         paymentmethod.setText(my_order_model.getPaymentmethod());
         landmark.setText(my_order_model.getLandmark());
-fulladdress.setText(my_order_model.getAddress());
+        fulladdress.setText(my_order_model.getAddress());
 
-        getOrderDetails();
+        getOrderDetails(my_order_model.getId());
     }
 
-    private void getOrderDetails() {
+    private void getOrderDetails(String id) {
         if (UtilMethods.INSTANCE.isNetworkAvialable(this)) {
-            UtilMethods.INSTANCE.OrderDetails(this,"1", new mCallBackResponse() {
+            UtilMethods.INSTANCE.OrderDetails(this,id, new mCallBackResponse() {
                 @Override
                 public void success(String from, String message) {
                     Type listType = new TypeToken<ArrayList<OrderDetailModel>>() {
                     }.getType();
                     list = new Gson().fromJson(message, listType);
-                  /*  fulladdress.setText("" + list.get(0).getAddress());
-                    landmark.setText("" + list.get(0).getLandmark());
-                    paymentmethod.setText("" + list.get(0).getPaymentmethod());*/
                     adapter.setList(list);
                     updatePrice(list);
                 }
@@ -148,7 +139,7 @@ fulladdress.setText(my_order_model.getAddress());
     public void addSignature(View view) {
         Intent intent = new Intent(this, AddSignatureActivity.class);
         intent.putExtra(AddSignatureActivity.ID, my_order_model);
-        intent.putExtra("order_id",my_order_model.getOrder_request_id());
+        intent.putExtra("order_id",my_order_model.getId());
         intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
@@ -283,7 +274,7 @@ fulladdress.setText(my_order_model.getAddress());
             @Override
             public void onClick(SweetAlertDialog sweetAlertDialog) {
                 sad.dismissWithAnimation();
-                getOrderDetails();
+                getOrderDetails(my_order_model.getId());
             }
         });
         sad.show();

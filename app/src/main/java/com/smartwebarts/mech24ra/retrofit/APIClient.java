@@ -10,6 +10,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class APIClient {
+    public static final String BASE_URL = "http://mech24ra.com/";
+    public static final String USER_PROFILE_IMAGE = BASE_URL + "img/user/";
     private static Retrofit retrofit = null;
 
     public static Retrofit getClient() {
@@ -29,7 +31,7 @@ public class APIClient {
 
             ////////////////////////////////////////////////////
             retrofit = new Retrofit.Builder()
-                    .baseUrl("http://autodoctor.co.in/")
+                    .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create(new GsonBuilder()
                             .setLenient()
                             .create()))

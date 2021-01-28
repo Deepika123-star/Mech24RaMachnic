@@ -3,18 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/gray"
     android:orientation="vertical">
-
 
     <LinearLayout
         android:id="@+id/lll"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:background="@color/white"
+        android:visibility="gone"
         android:layout_height="wrap_content">
-
-
 
         <androidx.appcompat.widget.SwitchCompat
             android:layout_width="wrap_content"
@@ -35,6 +34,7 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe"
         android:layout_width="match_parent"
@@ -49,5 +49,35 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <RelativeLayout
+        android:id="@+id/noData"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_centerHorizontal="true"
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/hintColor"
+            android:background="@drawable/ic_not_found"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:text="@string/no_data_found"
+            android:layout_marginTop="10dp"
+            android:id="@+id/dataText_vehical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView5"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+
+    </RelativeLayout>
 </RelativeLayout>

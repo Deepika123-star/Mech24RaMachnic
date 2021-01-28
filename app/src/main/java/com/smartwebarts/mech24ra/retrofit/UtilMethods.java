@@ -3,21 +3,31 @@ package com.smartwebarts.mech24ra.retrofit;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.github.ybq.android.spinkit.style.DoubleBounce;
 import com.google.gson.Gson;
+import com.rampo.updatechecker.UpdateChecker;
 import com.smartwebarts.mech24ra.AppSharedPreferences;
+import com.smartwebarts.mech24ra.BuildConfig;
 import com.smartwebarts.mech24ra.R;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +36,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,7 +46,8 @@ import retrofit2.Response;
 public enum UtilMethods {
 
     INSTANCE;
-My_order_model order_request;
+    public static String user_table = "user";
+    My_order_model order_request;
     public boolean isNetworkAvialable(Context context) {
         ConnectivityManager cm =
                 (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -132,14 +145,16 @@ My_order_model order_request;
         ProgressBar progressBar = (ProgressBar)dialog.findViewById(R.id.progress);
         DoubleBounce doubleBounce = new DoubleBounce();
         progressBar.setIndeterminateDrawable(doubleBounce);
+
+        AppSharedPreferences preferences = new AppSharedPreferences();
         dialog.show();
 
         try {
             EndPointInterface git = APIClient.getClient().create(EndPointInterface.class);
-            Call<List<My_order_model>> call = git.TodayOrder("1", id);
+            Call<List<My_order_model>> call = git.TodayOrder("pending",id, preferences.getLoginUserApiKey(context));
             call.enqueue(new Callback<List<My_order_model>>() {
                 @Override
-                public void onResponse(Call<List<My_order_model>> call, Response<List<My_order_model>> response) {
+                public void onResponse(@NotNull Call<List<My_order_model>> call, @NotNull Response<List<My_order_model>> response) {
                     dialog.dismiss();
                     String strResponse = new Gson().toJson(response.body());
                     Log.e("strResponse",strResponse);
@@ -158,7 +173,7 @@ My_order_model order_request;
                 }
 
                 @Override
-                public void onFailure(Call<List<My_order_model>> call, Throwable t) {
+                public void onFailure(@NotNull Call<List<My_order_model>> call, @NotNull Throwable t) {
                     callBackResponse.fail(t.getMessage());
                     dialog.dismiss();
                 }
@@ -387,7 +402,7 @@ My_order_model order_request;
             Call<List<OrderDetailModel>> call = git.OrderDetails( order_request_id);
             call.enqueue(new Callback<List<OrderDetailModel>>() {
                 @Override
-                public void onResponse(Call<List<OrderDetailModel>> call, Response<List<OrderDetailModel>> response) {
+                public void onResponse(@NotNull Call<List<OrderDetailModel>> call, @NotNull Response<List<OrderDetailModel>> response) {
 
                     dialog.dismiss();
                     String strResponse = new Gson().toJson(response.body());
@@ -405,7 +420,7 @@ My_order_model order_request;
                 }
 
                 @Override
-                public void onFailure(Call<List<OrderDetailModel>> call, Throwable t) {
+                public void onFailure(@NotNull Call<List<OrderDetailModel>> call, @NotNull Throwable t) {
                     dialog.dismiss();
                     callBackResponse.fail(t.getMessage());
                 }
@@ -535,11 +550,12 @@ My_order_model order_request;
         dialog.show();
 
         try {
+            AppSharedPreferences preferences = new AppSharedPreferences();
             EndPointInterface git = APIClient.getClient().create(EndPointInterface.class);
-            Call<List<My_order_model>> call = git.OrderHistory("1", userid);
+            Call<List<My_order_model>> call = git.OrderHistory("completed", userid, preferences.getLoginUserApiKey(context));
             call.enqueue(new Callback<List<My_order_model>>() {
                 @Override
-                public void onResponse(Call<List<My_order_model>> call, Response<List<My_order_model>> response) {
+                public void onResponse(@NotNull Call<List<My_order_model>> call, @NotNull Response<List<My_order_model>> response) {
                     dialog.dismiss();
                     String strResponse = new Gson().toJson(response.body());
                     Log.e("strResponse",strResponse);
@@ -556,7 +572,7 @@ My_order_model order_request;
                 }
 
                 @Override
-                public void onFailure(Call<List<My_order_model>> call, Throwable t) {
+                public void onFailure(@NotNull Call<List<My_order_model>> call, @NotNull Throwable t) {
                     callBackResponse.fail(t.getMessage());
                     dialog.dismiss();
                 }
@@ -680,18 +696,16 @@ My_order_model order_request;
 
         try {
             AppSharedPreferences preferences = new AppSharedPreferences();
-
             EndPointInterface git = APIClient.getClient().create(EndPointInterface.class);
-
             Call<UpDAteData> call = git.updateData(order_id,"order_request",preferences.getLoginUserApiKey(context),preferences.getLoginUserLoginId(context),recieved_by);
             call.enqueue(new Callback<UpDAteData>() {
                 @Override
-                public void onResponse(Call<UpDAteData> call, Response<UpDAteData> response) {
+                public void onResponse(@NotNull Call<UpDAteData> call, @NotNull Response<UpDAteData> response) {
                     dialog.dismiss();
                     String strResponse = new Gson().toJson(response.body());
                     Log.e("strResponse",strResponse);
                     if (response.body()!=null) {
-                        if (response.body()!=null && response.body().getStatus().equalsIgnoreCase("success")) {
+                        if (response.body().getStatus().equalsIgnoreCase("success")) {
                             callBackResponse.success("", strResponse);
 
                         }
@@ -704,7 +718,7 @@ My_order_model order_request;
                 }
 
                 @Override
-                public void onFailure(Call<UpDAteData> call, Throwable t) {
+                public void onFailure(@NotNull Call<UpDAteData> call, @NotNull Throwable t) {
                     callBackResponse.fail(t.getMessage());
                     dialog.dismiss();
                 }
@@ -741,7 +755,7 @@ My_order_model order_request;
                     String strResponse = new Gson().toJson(response.body());
                     Log.e("strResponse",strResponse);
                     if (response.body()!=null) {
-                        if (response.body()!=null && response.body().getStatus().equalsIgnoreCase("success")) {
+                        if (response.body().getStatus().equalsIgnoreCase("success")) {
                             callBackResponse.success("", strResponse);
 
                         }
@@ -787,7 +801,6 @@ My_order_model order_request;
                         if (response.body()!=null && response.body().getStatus()!=null && response.body().getStatus().equalsIgnoreCase("success")) {
                             callBackResponse.success("", response.body().getStatus());
                         } else {
-                            callBackResponse.fail(""+response.body().getStatus());
                         }
                     }
 
@@ -960,4 +973,300 @@ My_order_model order_request;
 
     }
 
+    public void updateLatLng(Context context, AppSharedPreferences preferences, double lat, double lng, mCallBackResponse callBackResponse) {
+
+        try {
+            EndPointInterface git = APIClient.getClient().create(EndPointInterface.class);
+            Call<MessageModel2> call = git.updateLatLng(preferences.getLoginUserLoginId(context),
+                    preferences.getLoginUserLoginId(context),
+                    preferences.getLoginUserApiKey(context),
+                    "user",
+                    lat,
+                    lng);
+            call.enqueue(new Callback<MessageModel2>() {
+                @Override
+                public void onResponse(@NotNull Call<MessageModel2> call, @NotNull Response<MessageModel2> response) {
+                    String strResponse = new Gson().toJson(response.body());
+                    Log.e("strResponse",strResponse);
+                    if (response.body()!=null) {
+                        if (response.body().getMessage().equalsIgnoreCase("success")) {
+                            callBackResponse.success("", strResponse);
+                        }
+                        else {
+                            callBackResponse.fail(response.body().getMessage());
+                        }
+                    } else {
+                        callBackResponse.fail("Invalid Mobile Number");
+                    }
+                }
+
+                @Override
+                public void onFailure(@NotNull Call<MessageModel2> call, @NotNull Throwable t) {
+                    callBackResponse.fail(t.getMessage());
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            callBackResponse.fail(e.getMessage());
+        }
+    }
+
+    public void uploadImage(Context context, File file, String table, String colName, final mCallBackResponse callBackResponse) {
+        if (UtilMethods.INSTANCE.isNetworkAvialable(context)) {
+            final Dialog dialog = getProgressDialog(context);
+            dialog.show();
+            try {
+
+                RequestBody requestFile =
+                        RequestBody.create(MediaType.parse("multipart/form-data"), file);
+                // MultipartBody.Part is used to send also the actual file name
+                MultipartBody.Part partfile = MultipartBody.Part.createFormData(colName, file.getName(), requestFile);
+
+                AppSharedPreferences preferences = new AppSharedPreferences();
+                EndPointInterface git = APIClient.getClient().create(EndPointInterface.class);
+                Call<MessageModel> call = git.updateImage(
+                        RequestBody.create(MediaType.parse("multipart/form-data"), preferences.getLoginUserLoginId(context) ),
+                        RequestBody.create(MediaType.parse("multipart/form-data"), preferences.getLoginUserLoginId(context) ),
+                        RequestBody.create(MediaType.parse("multipart/form-data"), preferences.getLoginUserApiKey(context) ),
+                        RequestBody.create(MediaType.parse("multipart/form-data"), table ),
+                        RequestBody.create(MediaType.parse("multipart/form-data"), preferences.getLoginUserName(context)),partfile);
+                call.enqueue(new Callback<MessageModel>() {
+                    @Override
+                    public void onResponse(@NotNull Call<MessageModel> call, @NotNull Response<MessageModel> response) {
+                        dialog.dismiss();
+                        String strResponse = new Gson().toJson(response.body());
+                        Log.e("strResponse",strResponse);
+                        if (response.body()!=null && response.body().getStatus()!=null && response.body().getStatus().equalsIgnoreCase("success")) {
+                            callBackResponse.success("", response.body().getMessage());
+                        } else {
+                            callBackResponse.fail(""+response.body().getStatus());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NotNull Call<MessageModel> call, @NotNull Throwable t) {
+                        callBackResponse.fail(t.getMessage());
+                        dialog.dismiss();
+                    }
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                callBackResponse.fail(e.getMessage());
+                dialog.dismiss();
+            }
+        } else {
+            UtilMethods.INSTANCE.internetNotAvailableMessage(context);
+        }
+    }
+
+    public void setAddress(Context context, String address, String city, String house, String pincode, String landmark, mCallBackResponse callBackResponse) {
+
+        if (UtilMethods.INSTANCE.isNetworkAvialable(context)) {
+            final Dialog dialog = getProgressDialog(context);
+            dialog.show();
+            try {
+
+                AppSharedPreferences preferences = new AppSharedPreferences();
+                EndPointInterface git = APIClient.getClient().create(EndPointInterface.class);
+                Call<MessageModel> call = git.setAddress(preferences.getLoginUserLoginId(context), "user", preferences.getLoginUserApiKey(context), preferences.getLoginUserLoginId(context), house+", "+ address, city, pincode, landmark);
+                call.enqueue(new Callback<MessageModel>() {
+                    @Override
+                    public void onResponse(@NotNull Call<MessageModel> call, @NotNull Response<MessageModel> response) {
+                        dialog.dismiss();
+                        String strResponse = new Gson().toJson(response.body());
+                        Log.e("strResponse",strResponse);
+                        if (response.body()!=null && response.body().getMessage()!=null) {
+                            callBackResponse.success("", strResponse);
+                        } else {
+                            callBackResponse.fail("No data");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NotNull Call<MessageModel> call, @NotNull Throwable t) {
+                        callBackResponse.fail(t.getMessage());
+                        dialog.dismiss();
+                    }
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                callBackResponse.fail(e.getMessage());
+                dialog.dismiss();
+            }
+        }
+        else {
+            UtilMethods.INSTANCE.internetNotAvailableMessage(context);
+        }
+    }
+
+    public void getaddress(Context context, mCallBackResponse callBackResponse) {
+
+        if (UtilMethods.INSTANCE.isNetworkAvialable(context)) {
+            final Dialog dialog = getProgressDialog(context);
+            dialog.show();
+            try {
+
+                AppSharedPreferences preferences = new AppSharedPreferences();
+                EndPointInterface git = APIClient.getClient().create(EndPointInterface.class);
+                Call<List<AddressModel>> call = git.getaddress(preferences.getLoginUserLoginId(context), "user", preferences.getLoginUserApiKey(context), preferences.getLoginUserLoginId(context));
+                call.enqueue(new Callback<List<AddressModel>>() {
+                    @Override
+                    public void onResponse(@NotNull Call<List<AddressModel>> call, @NotNull Response<List<AddressModel>> response) {
+                        dialog.dismiss();
+                        String strResponse = new Gson().toJson(response.body());
+                        Log.e("strResponse",strResponse);
+                        if (response.body()!=null && response.body().size()>0) {
+                            callBackResponse.success("", strResponse);
+                        } else {
+                            callBackResponse.fail("No data");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NotNull Call<List<AddressModel>> call, @NotNull Throwable t) {
+                        callBackResponse.fail(t.getMessage());
+                        dialog.dismiss();
+                    }
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                callBackResponse.fail(e.getMessage());
+                dialog.dismiss();
+            }
+        }
+        else {
+            UtilMethods.INSTANCE.internetNotAvailableMessage(context);
+        }
+    }
+
+    public void userdetail(final Context context, final mCallBackResponse callBackResponse) {
+
+        if (UtilMethods.INSTANCE.isNetworkAvialable(context)) {
+            final Dialog dialog = getProgressDialog(context);
+            dialog.show();
+            try {
+
+                AppSharedPreferences preferences = new AppSharedPreferences();
+
+                EndPointInterface git = APIClient.getClient().create(EndPointInterface.class);
+                Call<List<ProfileModel>> call = git.userdetail( user_table,preferences.getLoginUserLoginId(context), preferences.getLoginUserApiKey(context), preferences.getLoginUserLoginId(context));
+                call.enqueue(new Callback<List<ProfileModel>>() {
+                    @Override
+                    public void onResponse(@NotNull Call<List<ProfileModel>> call, @NotNull Response<List<ProfileModel>> response) {
+                        dialog.dismiss();
+                        String strResponse = new Gson().toJson(response.body());
+                        Log.e("strResponse",strResponse);
+                        if (response.body()!=null) {
+                            if (response.body().size()>0) {
+                                callBackResponse.success("", strResponse);
+                                LoginResponse data = new Gson().fromJson(preferences.getLoginDetails(context), LoginResponse.class);
+                                data.setProfile(response.body().get(0));
+                                preferences.setLoginDetails(context, new Gson().toJson(data));
+                                callBackResponse.success("", "");
+                            }
+                            else {
+                                callBackResponse.fail("Unable to get response from server");
+                            }
+                        } else {
+                            callBackResponse.fail("Unable to get response from server");
+//                           LoginData loginData = new LoginData();
+//                           loginData.setName("Sunny Shah");
+//                           callBackResponse.success("", new Gson().toJson(loginData));
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NotNull Call<List<ProfileModel>> call, @NotNull Throwable t) {
+                        callBackResponse.fail("Server down, Please try again after sometime");
+                        dialog.dismiss();
+                    }
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                callBackResponse.fail("Server down, Please try again after sometime");
+                dialog.dismiss();
+            }
+        } else {
+            UtilMethods.INSTANCE.internetNotAvailableMessage(context);
+        }
+    }
+
+
+    public void version(Activity context, final mCallBackResponse callBackResponse) {
+
+        try {
+            EndPointInterface git = APIClient.getClient().create(EndPointInterface.class);
+            Call<List<VersionModel>> call = git.version("vendor");
+            call.enqueue(new Callback<List<VersionModel>>() {
+                @Override
+                public void onResponse(@NotNull Call<List<VersionModel>> call, @NotNull Response<List<VersionModel>> response) {
+                    String strResponse = new Gson().toJson(response.body());
+                    Log.e("strResponse",strResponse);
+                    if (response.body()!=null) {
+                        if (response.body().size()>0) {
+                            if (response.body().get(0).getVcode() > BuildConfig.VERSION_CODE) {
+                                UpdateDialog(context);
+                            } else {
+//                                context.startNextActivity();
+                            }
+                        }
+                        else {
+//                            context.startNextActivity();
+                        }
+                    } else {
+//                        context.startNextActivity();
+                    }
+                }
+
+                @Override
+                public void onFailure(@NotNull Call<List<VersionModel>> call, @NotNull Throwable t) {
+//                    context.startNextActivity();
+                }
+            });
+
+        } catch (Exception e) {
+//            context.startNextActivity();
+        }
+    }
+
+    public void UpdateDialog(final Context context) {
+
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.update_available, null);
+
+        TextView tvLater = (TextView) view.findViewById(R.id.tv_later);
+        Button tvOk = (Button) view.findViewById(R.id.tv_ok);
+
+        final Dialog dialog = new Dialog(context);
+
+        dialog.setCancelable(false);
+        dialog.setContentView(view);
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        tvLater.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        tvOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToMarket(context);
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+    private static void goToMarket(Context mContext) {
+        mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(UpdateChecker.ROOT_PLAY_STORE_DEVICE + mContext.getPackageName())));
+    }
 }

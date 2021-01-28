@@ -61,12 +61,7 @@ public class AddSignatureActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         tvName = findViewById(R.id.name);
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
         mSignaturePad = (SignaturePad) findViewById(R.id.signature_pad);
         mSignaturePad.setOnSignedListener(new SignaturePad.OnSignedListener() {
@@ -104,37 +99,42 @@ public class AddSignatureActivity extends AppCompatActivity {
 
 
         verifyotp(view);
-
-//        convertImagetoString(tvName.getText().toString().trim());
     }
-//
     private void verifyotp(final View v) {
         if (UtilMethods.INSTANCE.isNetworkAvialable(AddSignatureActivity.this)) {
 
-            //final String mobileNumber = tvName.getText().toString();
-            UtilMethods.INSTANCE.upDateData(AddSignatureActivity.this,tvName.getText().toString(),strId.getOrder_request_id(), new mCallBackResponse() {
+            UtilMethods.INSTANCE.upDateData(AddSignatureActivity.this,tvName.getText().toString(),strId.getId(), new mCallBackResponse() {
                 @Override
                 public void success(String from, String message) {
                     UpDAteData otpModel = new Gson().fromJson(message, UpDAteData.class);
                     if (otpModel.getStatus().equalsIgnoreCase("success")) {
-                        Toast.makeText(AddSignatureActivity.this, "Your Service Completed...!", Toast.LENGTH_SHORT).show();
                        // OpenDialogFwd(otpModel);
                         tvName.setText("");
                         UtilMethods.INSTANCE.upDateStatus(AddSignatureActivity.this, strId.getOrderId(), new mCallBackResponse() {
                             @Override
                             public void success(String from, String message) {
-                                Toast.makeText(AddSignatureActivity.this, "Your Status is Completed...!", Toast.LENGTH_SHORT).show();
+
+                                new SweetAlertDialog(AddSignatureActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+                                        .setTitleText("Job Done")
+                                        .setContentText("Do not forget to take payment")
+                                        .setConfirmText("Ok")
+                                        .setConfirmClickListener(sDialog -> runOnUiThread(() -> {
+                                            Intent intent = new Intent(AddSignatureActivity.this, MainActivity.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                            startActivity(intent);
+                                            finishAffinity();
+                                        }))
+                                        .show();
+
                             }
 
                             @Override
                             public void fail(String from) {
-                                Toast.makeText(AddSignatureActivity.this, "Your Status is not Completed...!", Toast.LENGTH_SHORT).show();
 
                             }
                         });
 
                     } else {
-                        Toast.makeText(AddSignatureActivity.this, "Your Service  not Completed...!"+otpModel.getMessage() , Toast.LENGTH_SHORT).show();
                     }
 
                 }

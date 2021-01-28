@@ -3,6 +3,7 @@ package com.smartwebarts.mech24ra.retrofit;
 import java.util.List;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -20,16 +21,18 @@ public interface EndPointInterface {
                               @Field("tbname") String tbname,
                               @Field("password") String password);
 
-    @POST("controller/api/common/api.php")
+    @POST("controller/api/common/vendorhomepagedata.php")
     @FormUrlEncoded
-    Call<List<My_order_model>> TodayOrder(@Field("homepage") String homepage,
-                                          @Field("id") String userid);
+    Call<List<My_order_model>> TodayOrder(@Field("status") String status,
+                                          @Field("loginid") String loginid,
+                                          @Field("api_key") String api_key);
 
     @POST("controller/api/common/api.php")
     @FormUrlEncoded
     Call<StatusModel> setActive(@Field("updatestatus") String updatestatus,
                                 @Field("status") String status,
-                                          @Field("userid") String userid);
+                                @Field("userid") String userid);
+
     @POST("controller/api/common/api.php")
     @FormUrlEncoded
     Call<StatusModel> getActive(@Field("homepagestatus") String homepage,
@@ -38,12 +41,7 @@ public interface EndPointInterface {
 
     @POST("controller/api/common/api.php")
     @FormUrlEncoded
-    Call<List<OrderDetailModel>> OrderDetails(
-                                       @Field("order_request_id") String orderid);
-
-
-
-
+    Call<List<OrderDetailModel>> OrderDetails(@Field("order_request_id") String orderid);
 
     @Multipart
     @POST("controller/api/common/api.php")
@@ -58,10 +56,11 @@ public interface EndPointInterface {
                                         @Field("orderid") String orderid,
                                         @Field("signedby") String signedby);
 
-    @POST("controller/api/common/api.php")
+    @POST("controller/api/common/vendorhomepagedata.php")
     @FormUrlEncoded
-    Call<List<My_order_model>> OrderHistory(@Field("orderhistory") String homepage,
-                                            @Field("id") String userid);
+    Call<List<My_order_model>> OrderHistory(@Field("status") String status,
+                                            @Field("loginid") String loginid,
+                                            @Field("api_key") String api_key);
 
     @GET("API/Returnproduct_byorderid/{id}")
     Call<MessageModel> returnProductByOrderId(@Path("id") String userid);
@@ -152,4 +151,58 @@ public interface EndPointInterface {
                        @Field("sms") String sms);
 
 
+    @POST("controller/api/common/update.php")
+    @FormUrlEncoded
+    Call<MessageModel2> updateLatLng(@Field("id") String id,
+                                     @Field("loginid") String loginid,
+                                     @Field("api_key") String api_key,
+                                     @Field("tbname") String tbname,
+                                     @Field("lat") double lat,
+                                     @Field("lng") double lng);
+
+
+    @POST("controller/api/common/update.php")
+    @FormUrlEncoded
+    Call<MessageModel> setAddress(@Field("loginid") String loginid,
+                                  @Field("tbname") String tbname,
+                                  @Field("api_key") String api_key,
+                                  @Field("id") String id,
+                                  @Field("full_address") String address,
+                                  @Field("city") String city,
+                                  @Field("pin") String pincode,
+                                  @Field("landmark") String landmark
+    );
+
+
+
+    @POST("controller/api/common/selectOne.php")
+    @FormUrlEncoded
+    Call<List<AddressModel>> getaddress(@Field("loginid") String loginid,
+                                        @Field("tbname") String tbname,
+                                        @Field("api_key") String api_key,
+                                        @Field("id") String id);
+
+    @Multipart
+    @POST("controller/api/common/update.php")
+    Call<MessageModel> updateImage(@Part("id") RequestBody id,
+                                   @Part("loginid") RequestBody loginid,
+                                   @Part("api_key") RequestBody api_key,
+                                   @Part("tbname") RequestBody tbname,
+                                   @Part("name") RequestBody name,
+                                   @Part MultipartBody.Part image);
+
+
+
+    @POST("controller/api/common/selectOne.php")
+    @FormUrlEncoded
+    Call<List<ProfileModel>> userdetail(@Field("tbname") String tbname,
+                                        @Field("loginid") String loginid,
+                                        @Field("api_key") String api_key,
+                                        @Field("id") String id);
+
+
+    @POST("controller/api/common/version.php")
+    @FormUrlEncoded
+    Call<List<VersionModel>> version(@Field("colval") String colval);
 }
+

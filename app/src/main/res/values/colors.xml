@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#EF801C</color>
-    <color name="colorPrimaryDark">#EF801C</color>
-    <color name="colorAccent">#85C4E0</color>
-    <color name="themeColor">@color/colorAccent</color>
+    <color name="colorPrimary">#ff6200</color>
+    <color name="colorPrimaryDark">#ff6200</color>
+    <color name="colorAccent">#fd9346</color>
+    <color name="themeColor">#fd9346</color>
 
     <color name="white">#ffffff</color>
     <color name="gray">#E3E3E3</color>
@@ -26,5 +26,9 @@
     <color name="skyblue">#4CAFA7</color>
     <color name="abc">#19D60B</color>
     <color name="green1">#68B936</color>
+    <color name="light_green">#14c167</color>
+    <color name="lightGrey">#dcdcdc</color>
+    <color name="grey_50">#FAFAFA</color>
+    <color name="hintColor">#808080</color>
 
 </resources>

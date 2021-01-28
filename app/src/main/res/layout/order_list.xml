@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="@dimen/space_10"
     app:cardElevation="@dimen/space_10"
     android:theme="@style/Theme.MaterialComponents.Light"
     app:cardCornerRadius="@dimen/space_5"
@@ -11,12 +10,12 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_margin="@dimen/space_10"
         android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -40,9 +39,23 @@
                     android:paddingStart="@dimen/space_10"
                     android:paddingEnd="@dimen/space_10"
                     android:textStyle="bold"
+                    android:textColor="@color/white"
                     android:text="delivery date time here"
                     android:layout_marginStart="@dimen/space_20"
                     android:layout_marginEnd="@dimen/space_20"/>
+
+                <TextView
+                    android:id="@+id/amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/amount_bg"
+                    android:paddingTop="@dimen/space_5"
+                    android:paddingBottom="@dimen/space_5"
+                    android:paddingStart="@dimen/space_10"
+                    android:paddingEnd="@dimen/space_10"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:text="00"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -164,23 +177,13 @@
 
         </LinearLayout>
 
-        <com.google.android.material.card.MaterialCardView
+        <ImageView
             android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add_img"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_margin="@dimen/space_5"
-            app:cardBackgroundColor="@color/colorPrimaryDark"
-            android:elevation="@dimen/space_5"
-            app:cardCornerRadius="@dimen/space_15">
-
-            <ImageView
-                android:layout_width="@dimen/space_20"
-                android:layout_height="@dimen/space_20"
-                android:src="@drawable/ic_look"
-                android:layout_gravity="center"
-                android:tint="@color/white"/>
-        </com.google.android.material.card.MaterialCardView>
+            android:layout_gravity="center"/>
     </RelativeLayout>
 
 </com.google.android.material.card.MaterialCardView>

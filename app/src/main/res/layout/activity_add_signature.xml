@@ -72,8 +72,7 @@
             android:layout_marginStart="@dimen/space_20"
             android:background="@drawable/bg_green_outline"
             android:onClick="reset"
-            android:text="reset"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:text="reset"/>
 
         <Button
             android:layout_width="match_parent"

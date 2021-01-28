@@ -3,29 +3,44 @@ package com.smartwebarts.mech24ra.pushnotification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.TaskStackBuilder;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.smartwebarts.mech24ra.MainActivity;
 import com.smartwebarts.mech24ra.R;
-import com.smartwebarts.mech24ra.activity.Splash;
+import com.smartwebarts.mech24ra.utils.AccessToken;
 
 public class MyMessagingService extends FirebaseMessagingService {
 
+    private String messageBody;
+    private String msg;
+    private String img;
+    private String title;
+    private String key;
+    private String uid;
 
     @Override
     public void onNewToken(@NonNull String s) {
         super.onNewToken(s);
-//        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-//        Log.e("onNewToken", "Refreshed token: " + refreshedToken);
+
+        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+        Log.e("onNewToken", "Refreshed token: " + refreshedToken);
+        new AccessToken().setAccess_token(getApplicationContext(), refreshedToken);
 
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the
@@ -34,43 +49,46 @@ public class MyMessagingService extends FirebaseMessagingService {
     }
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-//        String str_from = "" + remoteMessage.getFrom();
-//        Log.e("From : ", str_from);
 
-        String str_title = "" + remoteMessage.getNotification().getTitle();
-//        Log.e("Title", str_title);
+        String str_from = "" + remoteMessage.getFrom();
+        Log.e("From : ", str_from);
 
-        String str_body = "" + remoteMessage.getNotification().getBody();
-//        Log.e("Body", str_body);
+        title = "" + remoteMessage.getData().get("title");
+        Log.e("Title", title);
 
-        String str_msg = "" + remoteMessage.getNotification().getBody();
-//        Log.e("Msg", str_msg);
+        messageBody = "" + remoteMessage.getData().get("body");
+        Log.e("Body", messageBody);
 
-//        String str_img = "" + remoteMessage.getNotification().getImageUrl();
-//        Log.e("Img", str_img);
+        msg = "" + remoteMessage.getData().get("msg");
+        Log.e("Msg", msg);
 
-//        Bitmap image = null;
-//        try {
-//            URL url = new URL(str_img);
-//            image = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-//        } catch(IOException e) {
-//            System.out.println(e.getMessage());
-//        }
+        img = "" + remoteMessage.getData().get("img");
+        Log.e("Img", img);
 
-        sendNotification(str_title, str_body, str_msg/*, image*/);
+        key = "" + remoteMessage.getData().get("key");
+        Log.e("Key", key);
+
+        uid = "" + remoteMessage.getData().get("uid");
+        Log.e("Uid", uid);
+
+        sendNotification();
 
     }
 
     /**
      * Create and show a simple notification containing the received FCM message.
      *
-     * @param messageBody FCM message body received.
      */
-    private void sendNotification(String title, String messageBody, String msg/*, Bitmap picture*/) {
 
-        Intent intent = new Intent(this, Splash.class);
+    private void sendNotification() {
+        Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("isNewRideAvailable", true);
+        intent.putExtra("messageBody", messageBody);
         intent.putExtra("msg", msg);
+        intent.putExtra("img", img);
+        intent.putExtra("uid", uid);
+        intent.putExtra("key", key);
 
         // Create the TaskStackBuilder and add the intent, which inflates the back stack
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
@@ -80,18 +98,22 @@ public class MyMessagingService extends FirebaseMessagingService {
         PendingIntent pendingIntent =
                 stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
-
         String channelId = getString(R.string.default_notification_channel_id);
-
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        int numMessages = 0;
+
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)
                         .setSmallIcon(R.drawable.logo)
-//                        .setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.ask_suyash))
+                        .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.logo))
                         .setContentTitle(title)
-//                        .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(picture))
-                        .setContentText(messageBody)
+                        .setNumber(numMessages++)
+                        .setStyle(new NotificationCompat.BigTextStyle())
+                        .setContentText(msg)
                         .setAutoCancel(true)
+                        .setTimeoutAfter(30*1000)
+                        .addAction(0, "Accept", pendingIntent)
                         .setSound(defaultSoundUri)
                         .setContentIntent(pendingIntent);
 
@@ -111,9 +133,39 @@ public class MyMessagingService extends FirebaseMessagingService {
 
             notificationManager.notify(0 , notificationBuilder.build());
 
-        }
+            registerReceiver(broadcastReceiver,
+                    new IntentFilter("com.from.notification"));
 
+            Intent intentNotification = new Intent();
+            intentNotification.setAction("com.from.notification");
+            intentNotification.putExtra("isNewRideAvailable", true);
+            intentNotification.putExtra("messageBody", messageBody);
+            intentNotification.putExtra("msg", msg);
+            intentNotification.putExtra("img", img);
+            intentNotification.putExtra("uid", uid);
+            intentNotification.putExtra("key", key);
+            sendBroadcast(intentNotification);
+        }
     }
 
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // do your stuff related to start activity
+            Toast.makeText(context, "broadcastReceiver", Toast.LENGTH_SHORT).show();
 
+            Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+            intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent1.putExtra("isNewRideAvailable", true);
+            intent1.putExtra("messageBody", messageBody);
+            intent1.putExtra("msg", msg);
+            intent1.putExtra("img", img);
+            intent1.putExtra("uid", uid);
+            intent1.putExtra("key", key);
+            getApplicationContext().startActivity(intent1);
+
+        }
+    };
 }

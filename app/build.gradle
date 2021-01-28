@@ -2,15 +2,15 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.smartwebarts.mech24mechanic"
         minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 30
+        versionCode 5
+        versionName "1.4"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -33,10 +33,10 @@ android {
 
     signingConfigs {
         config {
-            keyAlias 'acrepairdeliveryboy'
-            keyPassword 'acrepairdeliveryboypass'
-            storeFile file('D:/JKS/acrepairdeliveryboy/acrepairdeliveryboy.jks')
-            storePassword 'acrepairdeliveryboypass'
+            keyAlias 'mech24mechanicpass'
+            keyPassword 'mech24mechanicpass'
+            storeFile file('D:/JKS/mech24mechanic/mech24mechanic.jks')
+            storePassword 'mech24mechanicpass'
         }
     }
 }
@@ -78,17 +78,22 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.5.2'
 
     /*glide*/
-    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
 
     /*signature*/
     implementation 'com.williamww:silky-signature:0.1.0'
 
-    /*httpclient*/
-    /*implementation 'org.apache.httpcomponents:httpclient:4.5.6'
-    implementation group: 'org.apache.httpcomponents' , name: 'httpclient-android' , version: '4.3.5.1'
-    implementation('org.apache.httpcomponents:httpmime:4.3') {
-        exclude module: "httpclient"
-    }*/
+    /*facebook shimmer*/
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+    /*PlacesAutocompleteTextView*/
+    implementation 'com.seatgeek:placesautocomplete:0.3-SNAPSHOT'
+
+    /*image-picker*/
+    implementation 'com.github.dhaval2404:imagepicker:1.7.4'
+
+    /*update checker*/
+    implementation 'com.github.rampo.updatechecker:library:2.1.8'
 
     /*gmail = mech24ra@gmail.com*/
     /*password =  SmartwebArts123@*/

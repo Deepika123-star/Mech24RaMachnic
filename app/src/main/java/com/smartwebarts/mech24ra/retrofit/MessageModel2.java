@@ -7,7 +7,7 @@ public class MessageModel2 {
     @SerializedName("status")
     @Expose
     private String status;
-    @SerializedName("message")
+    @SerializedName(value = "message", alternate = "error")
     @Expose
     private String message;
     @SerializedName("recentinsertedid")

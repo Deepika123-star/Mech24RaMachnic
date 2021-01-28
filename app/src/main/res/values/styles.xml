@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -56,4 +56,31 @@
 
     </style>
 
+    <style name="FabStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">end|bottom</item>
+        <item name="srcCompat">@drawable/outline_cloud_upload_24</item>
+        <item name="backgroundTint">@color/colorPrimary</item>
+        <item name="tint">@color/white</item>
+        <item name="useCompatPadding">true</item>
+    </style>
+
+    <style name="TitleTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:gravity">center|start</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:textSize">@dimen/_16sdp</item>
+    </style>
+
+    <style name="imageUploadCardLayout" parent="Widget.MaterialComponents.CardView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">280dp</item>
+        <item name="android:layout_margin">@dimen/_10sdp</item>
+        <item name="cardCornerRadius">@dimen/_12sdp</item>
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="cardPreventCornerOverlap">false</item>
+    </style>
 </resources>

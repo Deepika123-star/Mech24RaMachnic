@@ -11,15 +11,13 @@ import java.io.Serializable;
 
 public class My_order_model implements Serializable {
 
-    @SerializedName("order_id")
+    @SerializedName("orderid")
     @Expose
     private String orderId;
 
-
-
-    @SerializedName("order_request_id")
+    @SerializedName("id")
     @Expose
-    private String order_request_id;
+    private String id;
     @SerializedName("name")
     @Expose
     private String name;
@@ -29,7 +27,7 @@ public class My_order_model implements Serializable {
     @SerializedName("address")
     @Expose
     private String address;
-    @SerializedName("cost")
+    @SerializedName("totalamount")
     @Expose
     private String cost;
     @SerializedName("model")
@@ -57,12 +55,12 @@ public class My_order_model implements Serializable {
     @Expose
     private String quantity;
 
-    public String getOrder_request_id() {
-        return order_request_id;
+    public String getId() {
+        return id;
     }
 
-    public void setOrder_request_id(String order_request_id) {
-        this.order_request_id = order_request_id;
+    public void setId(String id) {
+        this.id = id;
     }
     public String getQuantity() {
         return quantity;

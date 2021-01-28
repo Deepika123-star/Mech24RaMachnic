@@ -1,423 +1,334 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        tools:context="activity.ViewDetailsActivity"
-        android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    tools:context="activity.ViewDetailsActivity"
+    android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:title="@string/app_name"
+        app:titleTextColor="@color/white"
+        app:navigationIcon="@drawable/ic_chevron_left_black_24dp"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/bottomLayout">
+        <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            app:title="@string/app_name"
-            app:titleTextColor="@color/white"
-            app:navigationIcon="@drawable/ic_chevron_left_black_24dp"/>
+            android:orientation="vertical">
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/toolbar"
-            android:layout_above="@+id/bottomLayout">
-            <LinearLayout
 
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:background="#fff"
+                android:layout_margin="@dimen/_10sdp"
+                app:cardElevation="10dp"
+                card_view:cardCornerRadius="@dimen/_10sdp">
 
-
-                <com.google.android.material.card.MaterialCardView
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#fff"
-                    android:theme="@style/Theme.MaterialComponents.Light"
-                    app:cardElevation="@dimen/space_3"
-                    app:cardUseCompatPadding="true"
-                    card_view:cardCornerRadius="4dp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                    android:layout_height="wrap_content">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_margin="@dimen/_10sdp"
+                        android:orientation="horizontal">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/space_5"
+                            android:layout_weight="2"
                             android:orientation="vertical">
 
-                            <LinearLayout
+                            <com.smartwebarts.mech24ra.Fonts.LatoBLack
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:weightSum="4"
-                                android:orientation="horizontal">
+                                android:text="Order ID: "
+                                android:layout_marginTop="@dimen/txt_upr_margin"
+                                android:textColor="@color/dark_gray"
+                                android:textSize="@dimen/text_size_small"
+                                android:textStyle="bold" />
 
-                                <com.smartwebarts.mech24ra.Fonts.LatoBLack
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Order ID:"
-                                    android:layout_weight="1"
-                                    android:textColor="@color/dark_gray"
-                                    android:textSize="@dimen/text_size_small"
-                                    android:textStyle="bold" />
+                            <com.smartwebarts.mech24ra.Fonts.LatoBLack
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:text="Contact: "
+                                android:layout_marginTop="@dimen/txt_upr_margin"
+                                android:textColor="@color/dark_gray"
+                                android:textSize="@dimen/text_size_small" />
 
+                            <com.smartwebarts.mech24ra.Fonts.LatoBLack
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:text="Name:"
+                                android:layout_marginTop="@dimen/txt_upr_margin"
+                                android:textColor="@color/dark_gray"
+                                android:textSize="@dimen/text_size_small" />
 
-                                <com.smartwebarts.mech24ra.Fonts.LatoBLack
-                                    android:id="@+id/order_id"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="ID"
-                                    android:layout_weight="1"
-                                    android:textColor="#000"
-                                    android:textSize="@dimen/text_size_small"
-                                    android:textStyle="bold" />
+                            <com.smartwebarts.mech24ra.Fonts.LatoBLack
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Payment Method:"
+                                android:layout_marginTop="@dimen/txt_upr_margin"
+                                android:textColor="@color/dark_gray"
+                                android:textSize="@dimen/text_size_small" />
 
-                                <com.smartwebarts.mech24ra.Fonts.LatoBLack
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="left"
-                                    android:text="Contact:"
-                                    android:layout_weight="1"
-                                    android:textColor="@color/dark_gray"
-                                    android:textSize="@dimen/text_size_small" />
+                            <com.smartwebarts.mech24ra.Fonts.LatoBLack
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:text="Address :"
+                                android:layout_marginTop="@dimen/txt_upr_margin"
+                                android:textColor="@color/dark_gray"
+                                android:textSize="@dimen/text_size_small" />
 
-                                <com.smartwebarts.mech24ra.Fonts.LatoBLack
-                                    android:id="@+id/contact"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="top|left"
-                                    android:autoLink="phone"
-                                    android:layout_weight="1"
-                                    android:gravity="left|top"
-                                    android:text="Artículo total"
-                                    android:textColor="#000" />
-                            </LinearLayout>
-
-
+                            <com.smartwebarts.mech24ra.Fonts.LatoBLack
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Landmark :"
+                                android:layout_marginTop="@dimen/txt_upr_margin"
+                                android:visibility="gone"
+                                android:textColor="@color/dark_gray"
+                                android:textSize="@dimen/text_size_small" />
                         </LinearLayout>
 
-                        <RelativeLayout
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-
-
-                            <LinearLayout
+                            <com.smartwebarts.mech24ra.Fonts.LatoBLack
+                                android:id="@+id/order_id"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/space_10"
-                                android:layout_below="@+id/call"
-                                android:id="@+id/re"
-                                android:layout_marginRight="@dimen/space_10"
-                                android:layout_marginTop="@dimen/space_10"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="@dimen/space_2"
-                                    android:orientation="horizontal"
-                                    android:layout_weight="2"
-                                    android:weightSum="2">
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:layout_marginRight="1dp"
-                                        android:weightSum="2"
-                                        android:gravity="left|top">
-
-                                        <com.smartwebarts.mech24ra.Fonts.LatoBLack
-                                            android:layout_width="100dp"
-                                            android:layout_height="wrap_content"
-                                            android:text="Name:"
-                                            android:textColor="@color/dark_gray"
-                                            android:textSize="@dimen/text_size_small" />
-
-                                        <com.smartwebarts.mech24ra.Fonts.LatoBLack
-                                            android:id="@+id/tv_recivername"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:text=""
-                                            android:gravity="top|left"
-                                            android:layout_gravity="top|left"
-                                            android:textColor="#000"
-                                            android:textSize="@dimen/text_size_small" />
-                                    </LinearLayout>
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="@dimen/space_2"
-                                    android:orientation="horizontal"
-                                    android:layout_weight="2"
-                                    android:weightSum="2">
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:layout_marginRight="1dp"
-                                        android:weightSum="2"
-                                        android:gravity="left|top">
-
-                                        <com.smartwebarts.mech24ra.Fonts.LatoBLack
-                                            android:layout_width="100dp"
-                                            android:layout_height="wrap_content"
-                                            android:text="Payment Method:"
-                                            android:textColor="@color/dark_gray"
-                                            android:textSize="@dimen/text_size_small" />
-
-                                        <com.smartwebarts.mech24ra.Fonts.LatoBLack
-                                            android:id="@+id/paymentmethod"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:text=""
-                                            android:gravity="top|left"
-                                            android:layout_gravity="top|left"
-                                            android:textColor="#000"
-                                            android:textSize="@dimen/text_size_small" />
-                                    </LinearLayout>
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:layout_marginBottom="@dimen/space_2"
-                                    android:layout_marginTop="@dimen/space_2"
-                                    >
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:gravity="left|top">
-
-                                        <com.smartwebarts.mech24ra.Fonts.LatoBLack
-                                            android:layout_width="100dp"
-                                            android:layout_height="wrap_content"
-                                            android:text="Address :"
-                                            android:textColor="@color/dark_gray"
-                                            android:textSize="@dimen/text_size_small" />
-
-                                        <com.smartwebarts.mech24ra.Fonts.LatoBLack
-                                            android:id="@+id/fulladdress"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:text=""
-                                            android:gravity="top|start"
-                                            android:layout_gravity="top|start"
-                                            android:textColor="#000"
-                                            android:textSize="@dimen/text_size_small" />
-                                    </LinearLayout>
+                                android:text="20201229121209CD97"
+                                android:layout_marginTop="@dimen/txt_upr_margin"
+                                android:textColor="#000"
+                                android:textSize="@dimen/text_size_small"
+                                android:textStyle="bold" />
 
 
+                            <com.smartwebarts.mech24ra.Fonts.LatoBLack
+                                android:id="@+id/contact"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top|start"
+                                android:autoLink="phone"
+                                android:layout_marginTop="@dimen/txt_upr_margin"
+                                android:gravity="start|top"
+                                android:text="8840048791"
+                                android:textColor="#000" />
 
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="@dimen/space_2"
-                                    android:layout_marginTop="@dimen/space_2"                            android:orientation="horizontal">
+                            <com.smartwebarts.mech24ra.Fonts.LatoBLack
+                                android:id="@+id/tv_recivername"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Sunny Kumar Shah"
+                                android:layout_marginTop="@dimen/txt_upr_margin"
+                                android:gravity="top|start"
+                                android:layout_gravity="top|start"
+                                android:textColor="#000"
+                                android:textSize="@dimen/text_size_small" />
 
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:layout_marginRight="1dp"
-                                        android:gravity="left|top">
+                            <com.smartwebarts.mech24ra.Fonts.LatoBLack
+                                android:id="@+id/paymentmethod"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:layout_marginTop="@dimen/txt_upr_margin"
+                                android:gravity="top|start"
+                                android:layout_gravity="top|start"
+                                android:textColor="#000"
+                                android:textSize="@dimen/text_size_small" />
 
-                                        <com.smartwebarts.mech24ra.Fonts.LatoBLack
-                                            android:layout_width="100dp"
-                                            android:layout_height="wrap_content"
-                                            android:text="Landmark :"
-                                            android:textColor="@color/dark_gray"
-                                            android:textSize="@dimen/text_size_small" />
+                            <com.smartwebarts.mech24ra.Fonts.LatoBLack
+                                android:id="@+id/fulladdress"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:layout_marginTop="@dimen/txt_upr_margin"
+                                android:gravity="top|start"
+                                android:layout_gravity="top|start"
+                                android:textColor="#000"
+                                android:textSize="@dimen/text_size_small" />
 
-                                        <com.smartwebarts.mech24ra.Fonts.LatoBLack
-                                            android:id="@+id/landmark"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:text=""
-                                            android:gravity="top|left"
-                                            android:layout_gravity="top|left"
-                                            android:textColor="#000"
-                                            android:textSize="@dimen/text_size_small" />
-                                    </LinearLayout>
-
-
-
-                                </LinearLayout>
-
-
-                            </LinearLayout>
-
-
-                            <ImageView
-                                android:id="@+id/cancelorder"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:tint="@color/black"
-                                android:layout_marginTop="30dp"
-                                android:layout_marginEnd="@dimen/space_10"
+                            <com.smartwebarts.mech24ra.Fonts.LatoBLack
+                                android:id="@+id/landmark"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:layout_marginTop="@dimen/txt_upr_margin"
+                                android:gravity="top|start"
+                                android:layout_gravity="top|start"
+                                android:textColor="#000"
                                 android:visibility="gone"
-                                android:layout_alignParentEnd="true"
-                                android:background="@drawable/circle"
-                                android:onClick="cancelorder"
-                                android:src="@drawable/ic_dialog_close_dark"/>
-
-                        </RelativeLayout>
-
+                                android:textSize="@dimen/text_size_small" />
+                        </LinearLayout>
                     </LinearLayout>
 
-                    </RelativeLayout>
-                </com.google.android.material.card.MaterialCardView>
+                    <ImageView
+                        android:id="@+id/cancelorder"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:tint="@color/black"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginEnd="@dimen/space_10"
+                        android:visibility="gone"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/circle"
+                        android:onClick="cancelorder"
+                        android:src="@drawable/ic_dialog_close_dark"/>
+
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Item details :"
+                android:textColor="@color/dark_gray"
+                android:fontFamily="@font/bold"
+                android:layout_marginStart="@dimen/space_10"
+                android:layout_marginEnd="@dimen/space_10"
+                android:layout_marginTop="@dimen/space_10"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/space_10"
+                android:textSize="15sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_5"
+                android:weightSum="5"
+                android:paddingEnd="@dimen/space_20"
+                android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Item details :"
-                    android:textColor="@color/dark_gray"
-                    android:fontFamily="@font/bold"
-                    android:layout_marginStart="@dimen/space_10"
-                    android:layout_marginEnd="@dimen/space_10"
-                    android:layout_marginTop="@dimen/space_10"
+                    android:layout_weight="1"
+                    android:text="Brand"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_small"
                     android:textStyle="bold"
-                    android:layout_marginBottom="@dimen/space_10"
-                    android:textSize="15sp"/>
+                    android:gravity="center"/>
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/productImage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/space_5"
-                    android:weightSum="5"
-                    android:paddingEnd="@dimen/space_20"
-                    android:orientation="horizontal">
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:text="Image"
+                    android:textSize="@dimen/text_size_small"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
 
-                    <TextView
-                        android:id="@+id/name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Brand"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/text_size_small"
-                        android:textStyle="bold"
-                        android:gravity="center"/>
-
-                    <TextView
-                        android:id="@+id/productImage"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:text="Image"
-                        android:textSize="@dimen/text_size_small"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"/>
-
-                    <TextView
-                        android:id="@+id/Qty"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="Qty"
-                        android:textSize="@dimen/text_size_small"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"/>
-
-                    <TextView
-                        android:id="@+id/unit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="Model"
-                        android:textSize="@dimen/text_size_small"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"/>
-
-                    <TextView
-                        android:id="@+id/price"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="Price"
-                        android:textSize="@dimen/text_size_small"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"/>
-                </LinearLayout>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView"
+                <TextView
+                    android:id="@+id/Qty"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Qty"
+                    android:textSize="@dimen/text_size_small"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
 
-                <View
-                    android:layout_marginTop="20dp"
+                <TextView
+                    android:id="@+id/unit"
                     android:layout_width="match_parent"
-                    android:layout_height="11dp"
-                    android:visibility="gone"
-                    android:background="@drawable/ic_side_bg"/>
-                <ImageView
-                    android:id="@+id/addUser"
-                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/rotation"
-                    android:visibility="gone"
-                    android:scaleType="centerInside"
-                    android:onClick="openDialog"
-                    android:layout_gravity="end"
-                    android:contentDescription="TODO" />
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Model"
+                    android:textSize="@dimen/text_size_small"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="end"
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/space_10"
-                    android:layout_marginRight="@dimen/space_10"
-                    android:layout_marginTop="@dimen/space_10">
-
-
-                    <com.smartwebarts.mech24ra.Fonts.LatoBLack
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Total Price"
-                        android:layout_marginStart="@dimen/space_5"
-                        android:textColor="#000"
-                        android:layout_marginEnd="@dimen/space_5"
-                        android:textSize="@dimen/text_size_large" />
-
-                    <com.smartwebarts.mech24ra.Fonts.LatoBLack
-                        android:id="@+id/tv_order_price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:layout_marginStart="@dimen/space_5"
-                        android:layout_marginEnd="@dimen/space_5"
-                        android:textColor="@color/dark_gray"
-                        android:textSize="@dimen/text_size_large" />
-                </LinearLayout>
-
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Price"
+                    android:textSize="@dimen/text_size_small"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
             </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+            <View
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="11dp"
+                android:visibility="gone"
+                android:background="@drawable/ic_side_bg"/>
+            <ImageView
+                android:id="@+id/addUser"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/rotation"
+                android:visibility="gone"
+                android:scaleType="centerInside"
+                android:onClick="openDialog"
+                android:layout_gravity="end"
+                android:contentDescription="TODO" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="end"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_10"
+                android:layout_marginRight="@dimen/space_10"
+                android:layout_marginTop="@dimen/space_10">
+
+
+                <com.smartwebarts.mech24ra.Fonts.LatoBLack
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Price"
+                    android:layout_marginStart="@dimen/space_5"
+                    android:textColor="#000"
+                    android:layout_marginEnd="@dimen/space_5"
+                    android:textSize="@dimen/text_size_large" />
+
+                <com.smartwebarts.mech24ra.Fonts.LatoBLack
+                    android:id="@+id/tv_order_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_marginStart="@dimen/space_5"
+                    android:layout_marginEnd="@dimen/space_5"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/text_size_large" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
         android:id="@+id/bottomLayout"
@@ -439,9 +350,8 @@
             android:layout_margin="10dp"
             android:textAllCaps="true"
             android:onClick="openMap"
-            android:textSize="@dimen/space_15"
             android:background="@drawable/bg_rounded_button_green"
-            android:layout_height="50dp" />
+            android:layout_height="wrap_content" />
 
         <Button
             android:layout_width="0dp"
@@ -452,12 +362,9 @@
             android:visibility="visible"
             android:layout_margin="10dp"
             android:textAllCaps="true"
-            android:textSize="@dimen/space_15"
             android:onClick="addSignature"
             android:background="@drawable/bg_rounded_button_green"
-            android:layout_height="50dp" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
-    </RelativeLayout>
-<!--            android:onClick="orderUpdate"
--->
+</RelativeLayout>

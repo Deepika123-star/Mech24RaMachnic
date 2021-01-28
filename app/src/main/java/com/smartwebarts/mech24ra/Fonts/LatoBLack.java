@@ -32,7 +32,7 @@ public class LatoBLack extends TextView {
 
     private void applyCustomFont(Context context) {
 
-        Typeface customFont = FontCacheRagular.getTypeface("Bold.otf", context);
+        Typeface customFont = FontCacheRagular.getTypeface("bold.ttf", context);
 
         setTypeface(customFont);
     }

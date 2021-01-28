@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,32 +44,28 @@ class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyViewHolder> {
         myViewHolder.tv_order_no.setText(list.get(i).getOrderId());
         myViewHolder.tv_recivername.setText(list.get(i).getName());
         myViewHolder.contact.setText(list.get(i).getContact());
-        myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, ViewDetailsActivity.class);
-                intent.putExtra("order", list.get(i));
-                intent.putExtra("isToday", isToday);
-                context.startActivity(intent);
-            }
+        myViewHolder.amount.setText(String.format("%s %s", context.getString(R.string.currency), list.get(i).getCost()));
+        myViewHolder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(context, ViewDetailsActivity.class);
+            intent.putExtra("order", list.get(i));
+            intent.putExtra("isToday", isToday);
+            context.startActivity(intent);
         });
 
         if (isToday) {
             if (list.get(i).getOrderDateTime()!=null && !list.get(i).getOrderDateTime().trim().isEmpty()) {
-                myViewHolder.datetime.setText(String.format("%s %s", list.get(i).getOrderDateTime(), list.get(i).getOrderDateTime()));
+                myViewHolder.datetime.setText(String.format("%s", list.get(i).getOrderDateTime()));
             }
 
         } else {
 
-            myViewHolder.datetime.setText("Delivered");
+            myViewHolder.datetime.setText(R.string.delivered);
             myViewHolder.datetime.setBackground(context.getDrawable(R.drawable.bg_green_filled));
             myViewHolder.datetime.setTextColor(Color.WHITE);
-//            myViewHolder.tvAddress.setVisibility(View.GONE);
         }
-        if (list.get(i).getLandmark()!=null && !list.get(i).getAddress().trim().isEmpty()) {
+        if (!list.get(i).getAddress().trim().isEmpty()) {
             String address = list.get(i).getAddress().trim();
-            String landmark = list.get(i).getLandmark().trim();
-            myViewHolder.tvAddress.setText(address+"\n"+landmark);
+            myViewHolder.tvAddress.setText(address);
         }
     }
 
@@ -86,10 +81,9 @@ class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyViewHolder> {
         notifyDataSetChanged();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_order_no, tv_recivername, contact, datetime, tvAddress;
-//        TextView getDetails;
+        TextView tv_order_no, tv_recivername, contact, datetime, tvAddress, amount;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -99,6 +93,7 @@ class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.MyViewHolder> {
             contact = itemView.findViewById(R.id.contact);
             datetime = itemView.findViewById(R.id.datetime);
             tvAddress = itemView.findViewById(R.id.tv_address);
+            amount = itemView.findViewById(R.id.amount);
         }
     }
 }
